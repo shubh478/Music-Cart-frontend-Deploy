@@ -9,6 +9,7 @@ import styles from "./Register.module.css";
 import MusicCartIcon from "../../../assets/MusicCartIcon.svg";
 import MusicCartIconMobile from "../../../assets/MusicCartIconMobile.svg";
 import Footer from "../../Footer/Footer";
+
 const Register = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -83,7 +84,7 @@ const Register = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={`${styles.input} ${
-                    formik.touched.password && formik.errors.password
+                    formik.touched.name && formik.errors.name
                       ? styles.inputError
                       : ""
                   }`}
@@ -97,11 +98,29 @@ const Register = () => {
                 <input
                   type="text"
                   name="mobile"
+                  value={formik.values.mobile}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`${styles.input} ${
+                    formik.touched.mobile && formik.errors.mobile
+                      ? styles.inputError
+                      : ""
+                  }`}
+                />
+                {formik.touched.mobile && formik.errors.mobile && (
+                  <div className={styles.error}>{formik.errors.mobile}</div>
+                )}
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Email Id</label>
+                <input
+                  type="email"
+                  name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={`${styles.input} ${
-                    formik.touched.password && formik.errors.password
+                    formik.touched.email && formik.errors.email
                       ? styles.inputError
                       : ""
                   }`}
@@ -111,10 +130,10 @@ const Register = () => {
                 )}
               </div>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Email Id</label>
+                <label className={styles.label}>Password</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="password"
+                  name="password"
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -126,24 +145,6 @@ const Register = () => {
                 />
                 {formik.touched.password && formik.errors.password && (
                   <div className={styles.error}>{formik.errors.password}</div>
-                )}
-              </div>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formik.values.mobile}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  className={`${styles.input} ${
-                    formik.touched.password && formik.errors.password
-                      ? styles.inputError
-                      : ""
-                  }`}
-                />
-                {formik.touched.mobile && formik.errors.mobile && (
-                  <div className={styles.error}>{formik.errors.mobile}</div>
                 )}
               </div>
               <div className={styles.agreementText}>
