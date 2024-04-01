@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import DropDownCheckout from "../../assets/DropDownCheckout.svg";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -48,8 +49,6 @@ const Checkout = () => {
         console.log("item :", item);
         image.push(item.product.images[0]);
       });
-      console.log("items in checklist :", itemList);
-      console.log("images :", image);
 
       const orderData = {
         userAddress: userAddress,
@@ -66,7 +65,7 @@ const Checkout = () => {
         orderData
       );
       if (response.status === 201) {
-        console.log("Order placed successfully");
+        toast.success("Order placed successfully");
         localStorage.removeItem("cartItems");
         const deleteResponse = await axios.delete(
           "https://shubhamkumar478-gmail-com-cuvette-final-evaluation-aug.vercel.app/api/v1/cart/deletecart"
@@ -77,8 +76,7 @@ const Checkout = () => {
           console.log("item deleted from cart after  placing the order");
         }
       } else {
-        console.log("response :", response);
-        console.error("Failed to place order");
+        toast.error("Failed to place order");
       }
     } catch (error) {
       console.error("Error:", error);
