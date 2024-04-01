@@ -25,7 +25,6 @@ const Checkout = () => {
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
     if (storedCartItems) {
-      console.log("storedCartItems :", JSON.parse(storedCartItems));
       const name = localStorage.getItem("name");
       const parsed = JSON.parse(storedCartItems).items;
       setItemList(JSON.parse(storedCartItems).items);
@@ -49,7 +48,14 @@ const Checkout = () => {
         console.log("item :", item);
         image.push(item.product.images[0]);
       });
-
+      if (userAddress === "") {
+        toast.error("Please enter your address!");
+        return;
+      }
+      if (paymentMode === "Mode of payment") {
+        toast.error("Please choose payment method");
+        return;
+      }
       const orderData = {
         userAddress: userAddress,
         paymentMethod: paymentMode,
