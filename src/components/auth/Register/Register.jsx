@@ -95,8 +95,8 @@ const Register = () => {
               <div className={styles.formGroup}>
                 <label className={styles.label}>Mobile number</label>
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="mobile"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -113,8 +113,8 @@ const Register = () => {
               <div className={styles.formGroup}>
                 <label className={styles.label}>Email Id</label>
                 <input
-                  type="password"
-                  name="password"
+                  type="email"
+                  name="email"
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -131,8 +131,8 @@ const Register = () => {
               <div className={styles.formGroup}>
                 <label className={styles.label}>Password</label>
                 <input
-                  type="text"
-                  name="mobile"
+                  type="password"
+                  name="password"
                   value={formik.values.mobile}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
