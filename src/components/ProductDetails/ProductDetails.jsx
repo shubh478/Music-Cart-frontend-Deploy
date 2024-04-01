@@ -14,6 +14,8 @@ import {
   removeItemFromCart,
 } from "../../store/slices/cartSlice";
 import Footer from "../../components/Footer/Footer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -23,6 +25,7 @@ const ProductDetails = () => {
   const [inDetailsPage, setInDetailsPage] = useState(true);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -45,7 +48,6 @@ const ProductDetails = () => {
   }, []);
   useEffect(() => {
     const fetchProductDetails = async () => {
-      console.log("i m reached here");
       try {
         const response = await axios.get(
           `https://shubhamkumar478-gmail-com-cuvette-final-evaluation-aug.vercel.app/api/v1/product/${productId}`
@@ -99,14 +101,14 @@ const ProductDetails = () => {
         "https://shubhamkumar478-gmail-com-cuvette-final-evaluation-aug.vercel.app/api/v1/cart/getcart"
       );
       const cartItems = response.data.items;
-      console.log("cartItems in here :", cartItems);
+
       const existingCartItem = cartItems.find(
         (item) => item.product._id === productId
       );
-      console.log("existingCartItem :", existingCartItem);
+
       if (existingCartItem.quantity >= 8) {
         // If the product is already in the cart, update its quantity
-        alert("cannot add more than 8 item");
+        toast.error("cannot add more than 8 item");
         return;
       }
 
@@ -121,9 +123,9 @@ const ProductDetails = () => {
       setCount(updatedResponse.data.totalQuantity);
       console.log("response.data :", response.data);
       dispatch(addItemToCart(updatedResponse.data));
-      alert("Cart added successfully");
+      toast.success("Item added to cart successfully");
     } catch (error) {
-      alert("Please register or login before adding to cart");
+      toast.error(error);
     }
   };
 

@@ -11,6 +11,8 @@ import {
 } from "../../store/slices/cartSlice";
 import axios from "axios";
 import DefaultLayout from "../layout/DefaultLayout";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductGrid = ({ count, updateCount }) => {
   const dispatch = useDispatch();
@@ -62,14 +64,11 @@ const ProductGrid = ({ count, updateCount }) => {
           "https://shubhamkumar478-gmail-com-cuvette-final-evaluation-aug.vercel.app/api/v1/cart/getcart"
         );
         const cartItems = respons.data.items;
-        console.log("cartItems in here :", cartItems);
         existingCartItem = cartItems.find((item) => item.product._id === id);
       }
-
-      console.log("existingCartItem :", existingCartItem);
       if (count != 0 && existingCartItem && existingCartItem.quantity >= 8) {
         // If the product is already in the cart, update its quantity
-        alert("cannot add more than 8 item");
+        toast.error("cannot add more than 8 item");
         return;
       }
       const requestData = {
@@ -87,9 +86,9 @@ const ProductGrid = ({ count, updateCount }) => {
       localStorage.setItem("cartItems", JSON.stringify(response.data));
       dispatch(addItemToCart(response.data));
       updateCount(count + 1);
-      alert("cart addedsucessfully");
+      toast.success("Item added to cart successfully");
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
   const ProductItem = ({ product }) => (
