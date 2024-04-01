@@ -49,7 +49,15 @@ export const register = createAsyncThunk(
           mobile,
         }
       );
-      return response.data.token;
+      if (response.data.success === true) {
+        const token = response.data.token;
+        const name = response.data.name;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("name", name);
+
+        return response.data;
+      }
     } catch (error) {
       if (!error.response) {
         throw error;
