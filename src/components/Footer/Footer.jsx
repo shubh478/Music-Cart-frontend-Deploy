@@ -5,15 +5,21 @@ import HomeIcon from "../../assets/HomeIcon.svg";
 import InvoiceIcon from "../../assets/InvoiceIcon.svg";
 import LoginIcon from "../../assets/LoginMobileIcon.svg";
 import { useNavigate, Link } from "react-router-dom";
-function Footer({ count }) {
+import LogoutMobileIcon from "../../assets/LogoutMobileIcon.svg";
+function Footer({ count, inDetailsPage, inHomePage, inCheckout, inCartPage }) {
   // const [count, setCount] = useState(0);
   // useEffect(() => {
   //   setCount(cartItem[0].totalQuantity);
   // }, [cartItem]);
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [showInvoice, setShowInvoice] = useState(true);
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (inDetailsPage || inCheckout || inCartPage) {
+      setShowInvoice(false);
+    }
+  }, []);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -67,43 +73,62 @@ function Footer({ count }) {
       navigate("/login");
     }
   };
+  const handleHome = () => {
+    navigate("/");
+  };
   return (
     <div>
       <div className={styles.container}>
         <div>Musicart | All rights reserved</div>
       </div>
       <div className={styles.mobileViewContainer}>
-        <div className={styles.home}>
-          <div className={styles.line}></div>
+        <div
+          className={styles.home}
+          onClick={() => {
+            handleHome();
+          }}
+        >
+          {inHomePage && <div className={styles.line}></div>}
           <img src={HomeIcon} alt="" />
           <div className={styles.text}>Home</div>
         </div>
-        <div
-          className={styles.cart}
-          onClick={() => {
-            handleCart();
-          }}
-        >
-          <div className={styles.line}></div>
-          <div className={styles.count}>{count}</div>
-          <img src={CartMobileIcon} alt="" />
-          <div className={styles.text}>Cart</div>
+        <div className={styles.cartContainer}>
+          <div
+            className={styles.cart}
+            onClick={() => {
+              handleCart();
+            }}
+          >
+            <div className={styles.line}></div>
+            <div className={styles.count}>{count}</div>
+            <img src={CartMobileIcon} alt="" />
+            <div className={styles.text}>Cart</div>
+          </div>
         </div>
-        <div className={styles.invoice} onClick={handleInvoice}>
-          <div className={styles.line}></div>
-          <img src={InvoiceIcon} alt="" />
-          <div className={styles.text}>Invoice</div>
-        </div>
+        {showInvoice && (
+          <div className={styles.invoice} onClick={handleInvoice}>
+            <div className={styles.line}></div>
+            <img src={InvoiceIcon} alt="" />
+            <div className={styles.text}>Invoice</div>
+          </div>
+        )}
         <div
-          className={styles.login}
           onClick={() => {
             handleLogin();
           }}
         >
-          <div className={styles.line}></div>
-          <img src={LoginIcon} alt="" />
-          {!isAuthorized && <div className={styles.text}>Login</div>}
-          {isAuthorized && <div className={styles.text}>Logout</div>}
+          {!isAuthorized && (
+            <div className={styles.login}>
+              <img src={LoginIcon} alt="" />
+              <div className={styles.text}>Login</div>
+            </div>
+          )}
+          {isAuthorized && (
+            <div className={styles.login} a>
+              <img src={LogoutMobileIcon} alt="" />
+              <div className={styles.text}>Logout</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

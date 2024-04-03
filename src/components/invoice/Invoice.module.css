@@ -90,3 +90,144 @@
 .userName {
   margin-bottom: 10px;
 }
+.logoContainer {
+  display: none;
+}
+.backIcon {
+  display: none;
+}
+.MyInvoiceIcon img {
+  display: none;
+}
+@media (max-width: 425px) {
+  .MyInvoiceIcon img {
+    display: inline;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .backIcon {
+    display: flex;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.33);
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    margin-left: 20px;
+  }
+  .backToProductBtn {
+    display: none;
+  }
+  .backIcon img {
+    height: 17px;
+    width: 17px;
+  }
+  .logoContainer {
+    position: fixed;
+    display: flex;
+    background-color: rgba(46, 0, 82, 1);
+    font-size: 18.67px;
+    font-weight: 500;
+    line-height: 21.88px;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+    padding: 10px;
+    width: 100%;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    height: 30px;
+    width: 30px;
+  }
+  .header {
+    display: none;
+  }
+  .breadcrumb {
+    display: none;
+  }
+
+  .musicartInfo div {
+    font-size: 30px;
+  }
+
+  .musicartInfo span {
+    font-size: 20px;
+  }
+
+  .titleText {
+    font-size: 30px;
+  }
+
+  .invoiceIcon {
+    margin-bottom: 20px;
+  }
+
+  .userName {
+    margin-bottom: 0;
+  }
+
+  .invoicePage {
+    padding: 20px;
+  }
+  .MyInvoiceIcon {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  .MyInvoiceIcon img {
+    height: 19px;
+    width: 19px;
+  }
+  .titleText {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 18.75px;
+  }
+  .invoiceItem {
+    display: flex;
+    margin: 0;
+  }
+  .invoiceItemContainer {
+    margin: 30px;
+  }
+  .invoiceIcon img {
+    height: 25px;
+    width: 25px;
+  }
+  .userName {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 42.92px;
+    padding: 0;
+  }
+  .userAddress {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.06px;
+  }
+  .viewInvoiceBtn {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.06px;
+    text-align: center;
+    border-radius: 14px;
+    padding: 7px 21px;
+  }
+  .userInfo {
+    margin-bottom: 30px;
+  }
+  .invoicePage {
+    padding: 0;
+  }
+  .invoiceInfo {
+    margin-right: 10px;
+    width: 40%;
+  }
+}

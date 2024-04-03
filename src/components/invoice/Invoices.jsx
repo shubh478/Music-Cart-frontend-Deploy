@@ -9,6 +9,8 @@ import Header from "../header/Header";
 import MusicCartIcon from "../../assets/MusicCartIcon.svg";
 import ViewInvoiceIcon from "../../assets/ViewInvoiceIcon.svg";
 import axios from "axios";
+import backMobileIcon from "../../assets/backMobileIcon.svg";
+import MyInvoiceIcon from "../../assets/MyInvoiceIcon.svg";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -42,7 +44,19 @@ const Invoices = () => {
 
   return (
     <div className={styles.container}>
-      <Header />
+      <div className={styles.header}>
+        <Header />
+      </div>
+
+      <div className={styles.logoContainer}>
+        <img src={MusicCartIcon} alt="NotFound" className={styles.logo} />
+        <div className={styles.brand}>Musicart</div>
+      </div>
+      <Link to="/">
+        <div className={styles.backIcon}>
+          <img src={backMobileIcon} alt="" />
+        </div>
+      </Link>
       <div className={styles.invoicePage}>
         <div className={`${styles.breadcrumb} ${styles.breadcrumbContainer}`}>
           <div className={styles.musicartInfo}>
@@ -55,12 +69,23 @@ const Invoices = () => {
           </div>
         </div>
         <div>
-          <Link to="/" className={styles.backToProductLink}>
+          <Link
+            to="/"
+            className={styles.backToProductLink}
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <button className={styles.backToProductBtn}>Back to Home</button>
           </Link>
         </div>
-        <div>
-          <div className={styles.titleText}>My Invoices</div>
+        <div className={styles.invoiceItemContainer}>
+          <div className={styles.MyInvoiceIcon}>
+            <img src={MyInvoiceIcon} alt="" />
+            <div className={styles.titleText}>My Invoices</div>
+          </div>
           {loading ? (
             <div>Loading...</div>
           ) : (
@@ -78,7 +103,14 @@ const Invoices = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to={`/orderDetails/${invoice._id}`}>
+                  <Link
+                    to={`/orderDetails/${invoice._id}`}
+                    style={{
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
                     <div className={styles.viewInvoiceBtn}>View Invoice</div>
                   </Link>
                 </div>

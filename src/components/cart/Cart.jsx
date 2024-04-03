@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MyCartIcon from "../../assets/MyCartIcon.svg";
 import axios from "axios";
 import DropDownCart from "../../assets/DropDownCart.svg";
+import backMobileIcon from "../../assets/backMobileIcon.svg";
 const Cart = () => {
   const [itemlist, setItemList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -206,6 +207,64 @@ const Cart = () => {
               <div className={styles.placeOrderButton}>PLACE ORDER</div>
             </Link>
           </div>
+        </div>
+      </div>
+      <div className={styles.mobileViewCart}>
+        <div className={styles.backBtn}>
+          <Link to="/">
+            <div className={styles.backIcon}>
+              <img src={backMobileIcon} alt="" />
+            </div>
+          </Link>
+        </div>
+        <div className={styles.mobileItemList}>
+          {itemlist.map((item) => (
+            <div key={item._id} className={styles.mobileItem}>
+              <div className={styles.mobileItemImageContainer}>
+                <img
+                  src={item.product.images[0]}
+                  alt={item.product.name}
+                  className={styles.mobileItemImage}
+                />
+              </div>
+              <div className={styles.mobileProductContainer}>
+                <span className={styles.mobileProductName}>
+                  {item.product.name}
+                </span>
+                <span className={styles.mobilePrice}>
+                  ₹{item.product.price}
+                </span>
+                <span className={styles.color}>
+                  Color :{item.product.color}
+                </span>
+                <span className={styles.color}>
+                  {item.product.availability}
+                </span>
+                <div className={styles.mobileTotalPrice}>
+                  <span className={styles.mobileTotalPriceTitle}>Total:</span>
+                  <span className={styles.mobilePrice}>
+                    ₹{item.quantity * item.product.price}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={styles.mobileLine}></div>
+        <div className={styles.mobilePriceDetailsContainer}>
+          <div className={styles.mobilePriceDetails}>
+            <span className={styles.mobileTotalAmountTitle}>Total Amount</span>
+            <span className={styles.mobileTotalAmount}>₹{totalPrice + 45}</span>
+          </div>
+          <Link
+            to={{
+              pathname: "/checkout",
+              state: { totalPrice: totalPrice },
+            }}
+            style={{ textDecoration: "none" }}
+          >
+            <div className={styles.mobilePlaceOrderButton}>PLACE ORDER</div>
+          </Link>
         </div>
       </div>
     </div>

@@ -12,20 +12,24 @@ function Sucessfull() {
         <div className={styles.brand}>Musicart</div>
       </div>
       <div className={styles.contentContainer}>
-        <div className={styles.content}>
-          <div>
-            <img src={SucessfullImage} alt="" />
-          </div>
-          <div className={styles.textContainer}>
-            <span className={styles.title}>Order is placed successfully!</span>
-            <span className={styles.description}>
-              You will be receiving a confirmation email with order details
-            </span>
-          </div>
-          <div className={styles.linkContainer}>
-            <Link to="/" className={styles.link}>
-              <div className={styles.btn}>Go back to Homepage</div>
-            </Link>
+        <div className={styles.contentExtra}>
+          <div className={styles.content}>
+            <div>
+              <img src={SucessfullImage} alt="" />
+            </div>
+            <div className={styles.textContainer}>
+              <span className={styles.title}>
+                Order is placed successfully!
+              </span>
+              <span className={styles.description}>
+                You will be receiving a confirmation email with order details
+              </span>
+            </div>
+            <div className={styles.linkContainer}>
+              <Link to="/" className={styles.link}>
+                <div className={styles.btn}>Go back to Homepage</div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

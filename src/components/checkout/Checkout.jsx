@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import backMobileIcon from "../../assets/backMobileIcon.svg";
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Checkout = () => {
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
     if (storedCartItems) {
+      console.log("storedCartItems :", JSON.parse(storedCartItems));
       const name = localStorage.getItem("name");
       const parsed = JSON.parse(storedCartItems).items;
       setItemList(JSON.parse(storedCartItems).items);
@@ -48,6 +50,8 @@ const Checkout = () => {
         console.log("item :", item);
         image.push(item.product.images[0]);
       });
+      console.log("items in checklist :", itemList);
+      console.log("images :", image);
       if (userAddress === "") {
         toast.error("Please enter your address!");
         return;
@@ -63,6 +67,7 @@ const Checkout = () => {
         totalPrice: totalPrice + 45,
         images: image,
       };
+
       const token = localStorage.getItem("token");
       axios.defaults.headers.common["Authorization"] = token;
       if (!token) return;
@@ -82,16 +87,25 @@ const Checkout = () => {
           console.log("item deleted from cart after  placing the order");
         }
       } else {
-        toast.error("Failed to place order");
+        console.log("response :", response);
+        console.error("Failed to place order");
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
   return (
-    <div>
-      <Header />
+    <div className={styles.CheckoutContainer}>
+      <div className={styles.header}>
+        <Header />
+      </div>
+
       <div className={styles.container}>
+        <Link to="/">
+          <div className={styles.backIcon}>
+            <img src={backMobileIcon} alt="" />
+          </div>
+        </Link>
         <div className={`${styles.breadcrumb} ${styles.breadcrumbContainer}`}>
           <div className={styles.musicartInfo}>
             <img src={MusicCartIcon} alt="My Cart Icon" />
@@ -129,6 +143,7 @@ const Checkout = () => {
                 </div>
                 <div className={styles.line1}></div>
                 <div className={styles.line1}></div>
+                <div className={styles.line5}></div>
                 <div className={styles.step}>2. Payment Method</div>
                 <div className={styles.paymentMethods}>
                   <div
@@ -164,6 +179,7 @@ const Checkout = () => {
                 </div>
                 <div className={styles.line2}></div>
                 <div className={styles.line2}></div>
+                <div className={styles.line5}></div>
                 <div className={styles.step}>3. Review Items and Delivery</div>
 
                 <div className={styles.orderItems}>
@@ -247,6 +263,24 @@ const Checkout = () => {
                   <div className={styles.orderTotal2}>
                     <span>Order Total:</span>
                     <span>₹{totalPrice + 45}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.placeOrderSectionMobile}>
+              <div className={styles.palceOrderBtnContainer}>
+                <div className={styles.orderTotal}>
+                  <div className={styles.orderTotalTitle}>Order Total: </div>
+                  <div className={styles.orderTotalvalue}>
+                    ₹{totalPrice + 45}
+                  </div>
+                </div>
+                <div className={styles.palceOrderBtnMobile}>
+                  <div
+                    className={styles.palceOrderBtn1}
+                    onClick={handlePlaceOrder}
+                  >
+                    Place your order
                   </div>
                 </div>
               </div>

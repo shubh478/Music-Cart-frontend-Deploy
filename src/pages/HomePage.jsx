@@ -72,7 +72,7 @@ function HomePage() {
         <Product count={count} updateCount={updateCount} />
       </div>
       <div style={{ marginTop: "40px" }}>
-        <Footer count={count} />
+        <Footer count={count} inHomePage={inHomePage} />
       </div>
       <Feedback />
     </div>

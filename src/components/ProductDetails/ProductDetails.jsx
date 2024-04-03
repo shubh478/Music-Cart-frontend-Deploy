@@ -16,6 +16,7 @@ import {
 import Footer from "../../components/Footer/Footer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import backMobileIcon from "../../assets/backMobileIcon.svg";
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -25,7 +26,6 @@ const ProductDetails = () => {
   const [inDetailsPage, setInDetailsPage] = useState(true);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -78,7 +78,9 @@ const ProductDetails = () => {
   const renderStarRating = () => {
     const stars = [];
     for (let i = 0; i < product.starRating; i++) {
-      stars.push(<img key={i} src={Star} alt="Star Icon" />);
+      stars.push(
+        <img key={i} src={Star} className={styles.starImage} alt="Star Icon" />
+      );
     }
     return stars;
   };
@@ -101,11 +103,11 @@ const ProductDetails = () => {
         "https://shubhamkumar478-gmail-com-cuvette-final-evaluation-aug.vercel.app/api/v1/cart/getcart"
       );
       const cartItems = response.data.items;
-
+      console.log("cartItems in here :", cartItems);
       const existingCartItem = cartItems.find(
         (item) => item.product._id === productId
       );
-
+      console.log("existingCartItem :", existingCartItem);
       if (existingCartItem.quantity >= 8) {
         // If the product is already in the cart, update its quantity
         toast.error("cannot add more than 8 item");
@@ -215,9 +217,7 @@ const ProductDetails = () => {
             <div>Musicart</div>
             <span>Home / {product.name}</span>
           </div>
-          <div>
-            <CartBtn count={count} />
-          </div>
+          <div>{isAuthorized && <CartBtn count={count} />}</div>
         </div>
         <div>
           <Link to="/">
@@ -225,6 +225,17 @@ const ProductDetails = () => {
               Back to products
             </button>
           </Link>
+        </div>
+        <Link to="/">
+          <div className={styles.backIcon}>
+            <img src={backMobileIcon} alt="" />
+          </div>
+        </Link>
+        <div
+          className={`${styles.buyNowBtn} ${styles.mobileBuyNowBtn}`}
+          onClick={() => handleBuyNow(product._id)}
+        >
+          Buy Now
         </div>
         <div className={styles.summary}>
           <p>{product.summary}</p>
@@ -242,12 +253,15 @@ const ProductDetails = () => {
               {renderStarRating()}
               <span>({product.numberOfReviews} Customer reviews)</span>
             </div>
+            <div className={styles.summaryMobile}>
+              <p>{product.summary}</p>
+            </div>
             <div className={styles.price}>Price: ₹ {product.price}</div>
-            <span>
+            <span className={styles.colorType}>
               {product.color} | {product.headphoneType}
             </span>
             <div className={styles.aboutItem}>
-              <h3>About this item</h3>
+              <h3 className={styles.aboutItemTitle}>About this item</h3>
               <ul>
                 {product.about.map((item, index) => (
                   <li key={index}>{item}</li>
@@ -255,11 +269,12 @@ const ProductDetails = () => {
               </ul>
             </div>
             <div className={styles.availability}>
-              Available -{" "}
+              <span className={styles.availableStockTitle}>Available - </span>
               <span className={styles.stock}>{product.availability}</span>
             </div>
             <div className={styles.brand}>
-              Brand - <span>{product.brand}</span>
+              <span className={styles.availableStockTitle}> Brand - </span>
+              <span className={styles.stock}>{product.brand}</span>
             </div>
             <div>
               <div className={styles.btn}>
@@ -281,7 +296,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer count={count} inDetailsPage={inDetailsPage} />
     </div>
   );
 };

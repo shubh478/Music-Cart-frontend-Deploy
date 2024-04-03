@@ -7,6 +7,7 @@ import MusicCartIcon from "../../assets/MusicCartIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import DropDownCheckout from "../../assets/DropDownCheckout.svg";
 import { useLocation } from "react-router-dom";
+import backMobileIcon from "../../assets/backMobileIcon.svg";
 function OrderDetails() {
   const navigate = useNavigate();
   const [selectedProductName, setSelectedProductName] = useState("");
@@ -48,8 +49,16 @@ function OrderDetails() {
   };
   return (
     <div>
-      <Header />
+      <div className={styles.header}>
+        <Header />
+      </div>
+
       <div className={styles.container}>
+        <Link to="/invoice">
+          <div className={styles.backIcon}>
+            <img src={backMobileIcon} alt="" />
+          </div>
+        </Link>
         <div className={`${styles.breadcrumb} ${styles.breadcrumbContainer}`}>
           <div className={styles.musicartInfo}>
             <img src={MusicCartIcon} alt="My Cart Icon" />
@@ -76,6 +85,7 @@ function OrderDetails() {
                 </div>
                 <div className={styles.line1}></div>
                 <div className={styles.line1}></div>
+                <div className={styles.line5}></div>
                 <div className={styles.step}>2. Payment Method</div>
                 <div className={styles.paymentMethods}>
                   <div className={styles.dropContainer}>
@@ -84,6 +94,7 @@ function OrderDetails() {
                 </div>
                 <div className={styles.line2}></div>
                 <div className={styles.line2}></div>
+                <div className={styles.line6}></div>
                 <div className={styles.step}>3. Review Items and Delivery</div>
 
                 <div className={styles.orderItems}>
@@ -121,6 +132,7 @@ function OrderDetails() {
               </div>
             </div>
             <div>
+              <div className={styles.line6}></div>
               <div className={styles.placeOrderSection2}>
                 <div className={styles.orderSummary}>
                   <div className={styles.orderSummaryText}>Order Summary</div>
@@ -134,6 +146,16 @@ function OrderDetails() {
                   <div className={styles.orderTotal2}>
                     <span>Order Total:</span>
                     <span>₹{totalPrice + 45}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.placeOrderSectionMobile}>
+              <div className={styles.palceOrderBtnContainer}>
+                <div className={styles.orderTotal}>
+                  <div className={styles.orderTotalTitle}>Order Total: </div>
+                  <div className={styles.orderTotalvalue}>
+                    ₹{totalPrice + 45}
                   </div>
                 </div>
               </div>
