@@ -88,7 +88,7 @@
     position: absolute; /* Position arrows absolutely */
     top: 101%; /* Position arrows vertically centered */
     transform: translateY(5%); /* Center arrows vertically */
-    z-index: 10; /* Ensure arrows are above the dots */
+    z-index: 1; /* Ensure arrows are above the dots */
   }
 
   .prev {
