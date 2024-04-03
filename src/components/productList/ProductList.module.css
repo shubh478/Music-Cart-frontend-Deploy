@@ -5,6 +5,7 @@
   display: flex;
 
   gap: 20px;
+  margin-top: 30px;
 }
 .productItemList {
   background: rgba(0, 102, 255, 0.17);

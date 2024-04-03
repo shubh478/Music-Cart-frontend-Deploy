@@ -275,6 +275,33 @@
 .mobileViewCart {
   display: none;
 }
+.link {
+  text-decoration: none;
+  outline: none;
+}
+@media (max-width: 1024px) {
+  .priceDetailsTitle {
+    font-size: 22px;
+  }
+  .priceDetails {
+    font-size: 17px;
+    line-height: 20px;
+  }
+  .item {
+    gap: 45px;
+  }
+  .placeOrderButton {
+    background: rgba(255, 214, 0, 1);
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
 @media (max-width: 425px) {
   .cartContainer {
     display: none;

@@ -14,6 +14,7 @@
 }
 .displayOption {
   display: flex;
+  gap: 5px;
 }
 .filterOption {
   display: flex;
@@ -90,14 +91,21 @@ input::placeholder {
 .dropdownContainer {
   display: flex;
   background-color: rgba(217, 217, 217, 1);
-  padding: 10px 30px;
+  padding: 0.8vw 1.9vw; /* Adjusted padding relative to viewport width */
   border-radius: 26.15px;
   gap: 4px;
-  font-size: 23.43px;
+  font-size: 1vw; /* Adjusted font size relative to viewport width */
   font-weight: 500;
-  line-height: 27.45px;
+  line-height: 1.2; /* Adjusted line height */
   color: rgba(0, 0, 0, 1);
+  justify-content: center;
+  align-items: center;
 }
+.dropdownContainer img {
+  height: 1vw;
+  width: 1vw;
+}
+
 .filterOptionContainer {
   display: flex;
   width: 100%;
@@ -119,6 +127,21 @@ input::placeholder {
 .searchBarMobile {
   display: none;
 }
+@media (max-width: 1024px) {
+  .dropdownContainer {
+    padding: 0.9vw 2.7vw;
+    font-size: 1.3vw;
+  }
+  .display {
+    margin-right: 0;
+  }
+  .displayOptions img {
+    margin-right: 0;
+  }
+  .filterOptionContainer {
+  }
+}
+
 @media (max-width: 425px) {
   .desktopSort {
     display: none;
@@ -126,6 +149,11 @@ input::placeholder {
   .mobileSort {
     display: inline;
     margin-right: 10px;
+    margin-top: 0;
+  }
+  .sort {
+    display: flex;
+    align-items: flex-start;
   }
   .filterOptionsContainer {
   }
@@ -135,6 +163,10 @@ input::placeholder {
 
   .optionTitle {
     white-space: nowrap;
+    display: flex;
+    height: 3vw;
+    justify-content: center;
+    align-items: center;
   }
 
   .filterOptionContainer {
@@ -150,15 +182,21 @@ input::placeholder {
     display: flex;
     flex-direction: row;
     background-color: rgba(217, 217, 217, 1);
-    padding: 4px 16px;
+
     border-radius: 6.26px;
     gap: 4px;
-    font-size: 13.43px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 27.45px;
     color: rgba(0, 0, 0, 1);
+    justify-content: center;
+    align-items: center;
+    padding: 7px 22px;
   }
-
+  .dropdownContainer img {
+    height: 1.5vw;
+    width: 1.5vw;
+  }
   .dropdown {
     position: relative;
 
