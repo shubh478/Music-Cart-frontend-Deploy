@@ -11,7 +11,9 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
-
+.line6 {
+  display: none;
+}
 .breadcrumb img {
   margin-right: 8px;
 }
@@ -518,11 +520,13 @@
     display: none;
   }
   .line5 {
+    display: block;
     border-bottom: 2.87px solid rgba(225, 225, 225, 1);
     margin-bottom: 20px;
     margin-top: 20px;
   }
   .line6 {
+    display: block;
     border-bottom: 2.87px solid rgba(225, 225, 225, 1);
     margin-bottom: 20px;
     margin-top: 20px;
