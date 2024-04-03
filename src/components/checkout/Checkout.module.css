@@ -316,6 +316,29 @@
 .placeOrderSectionMobile {
   display: none;
 }
+@media (max-width: 1024px) {
+  .step {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  .palceOrderBtn2 {
+    font-size: 18px;
+  }
+  .usersDetailsFilling {
+    width: 70%;
+  }
+  .userDetailsFillingContainer {
+    gap: 50px;
+  }
+  .orderTotal2 {
+    white-space: nowrap;
+    font-size: 20px;
+  }
+  .palceOrderBtn1 {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+}
 @media (max-width: 425px) {
   .placeOrderSectionMobile {
     display: block;
@@ -342,6 +365,7 @@
   .stepsContainer {
     grid-template-columns: 1fr;
     row-gap: 10px;
+    column-gap: 15px;
   }
   .placeOrderSection {
     flex-direction: column;
